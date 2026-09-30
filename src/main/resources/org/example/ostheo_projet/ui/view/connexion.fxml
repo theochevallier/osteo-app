@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="org.example.ostheo_projet.ui.controller.ConnexionController"
+            fx:id="rootPane">
+    <VBox alignment="CENTER" spacing="20.0" style="-fx-padding: 60;">
+        <!-- Titre -->
+        <Label text="Logiciel Pathos" style="-fx-font-size: 32; -fx-font-weight: bold; -fx-text-fill: #1d1d1f;"/>
+
+        <!-- Sous-titre -->
+        <Label fx:id="lblTitle" text="Bienvenue ! Connectez-vous à votre compte"
+               style="-fx-font-size: 14; -fx-text-fill: #86868b;"/>
+
+        <!-- Formulaire -->
+        <VBox spacing="16.0" style="-fx-max-width: 300;" alignment="CENTER">
+            <!-- Champ Username -->
+            <VBox spacing="6.0">
+                <Label text="Nom d'utilisateur" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                <TextField fx:id="inputUsername" promptText="Entrez votre nom d'utilisateur"/>
+            </VBox>
+
+            <!-- Champ Password -->
+            <VBox spacing="6.0">
+                <Label text="Mot de passe" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                <PasswordField fx:id="inputPassword" promptText="Entrez votre mot de passe"/>
+            </VBox>
+
+            <Label fx:id="lblMessage" style="-fx-text-fill: red;" visible="false" />
+
+            <!-- Bouton Connexion -->
+            <Button fx:id="btnConnexion" styleClass="blue-button" text="Se connecter" onAction="#handleConnexion"/>
+        </VBox>
+    </VBox>
+</StackPane>

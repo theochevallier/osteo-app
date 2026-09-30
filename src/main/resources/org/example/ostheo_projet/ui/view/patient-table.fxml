@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import org.example.ostheo_projet.ui.component.AutoCompleteTextField?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.ostheo_projet.ui.controller.PatientTableController"
+      spacing="15.0">
+
+    <!-- TABLE ACTIONS BUTTONS -->
+    <HBox spacing="20" alignment="CENTER_RIGHT" >
+        <!-- refresh button -->
+        <Button fx:id="btnRefreshTable" text="Rafraîchir" styleClass="blue-button" onAction="#handleRefreshTable"/>
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <Button fx:id="btnAddPatient" text="Nouveau" styleClass="green-button"
+                onAction="#handleNewPatient">
+            <VBox.margin>
+                <Insets bottom="20"/>
+            </VBox.margin>
+        </Button>
+        <Button fx:id="btnModifyPatient" onAction="#handleUpdatePatient" text="Modifier"
+                styleClass="yellow-button" disable="true">
+            <VBox.margin>
+                <Insets bottom="20"/>
+            </VBox.margin>
+        </Button>
+        <Button fx:id="btnArchivePatient" onAction="#handleArchivePatient" text="Archiver"
+                styleClass="cancel-button" disable="true">
+            <VBox.margin>
+                <Insets bottom="20"/>
+            </VBox.margin>
+        </Button>
+        <Button fx:id="btnDeletePatient" text="Supprimer" styleClass="red-button"
+                onAction="#handleDeletePatient" disable="true">
+            <VBox.margin>
+                <Insets bottom="20"/>
+            </VBox.margin>
+        </Button>
+    </HBox>
+
+    <!-- FILTER TABLE TEXTFIELDS -->
+    <HBox fx:id="paneTableFilters" spacing="6" >
+        <VBox spacing="6">
+            <Label text="Genre" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            <ComboBox fx:id="comboFilterGenre" onAction="#handleSelectComboGenre" HBox.hgrow="ALWAYS"/>
+        </VBox>
+        <VBox spacing="6">
+            <Label text="Nom" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            <TextField fx:id="inputFilterLastname" onKeyReleased="#handleFilterTable"/>
+        </VBox>
+        <VBox spacing="6">
+            <Label text="Prénom" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            <TextField fx:id="inputFilterFirstname" onKeyReleased="#handleFilterTable"/>
+        </VBox>
+        <VBox spacing="6" maxWidth="140">
+            <Label text="Date de naissance" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            <TextField fx:id="inputFilterBirthday" onKeyReleased="#handleFilterTable"/>
+        </VBox>
+        <VBox spacing="6">
+            <Label text="Ville" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            <AutoCompleteTextField fx:id="inputFilterAutoCompleteCity" onKeyReleased="#handleFilterTable"/>
+        </VBox>
+        <VBox spacing="6" maxWidth="140">
+            <Label text="Code Postal" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            <AutoCompleteTextField fx:id="inputFilterPostalCode" onKeyReleased="#handleFilterTable"/>
+        </VBox>
+        <VBox spacing="6">
+            <Label text="Email" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            <TextField fx:id="inputFilterEmail" onKeyReleased="#handleFilterTable"/>
+        </VBox>
+        <VBox spacing="6">
+            <Label text="Portable" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            <TextField fx:id="inputFilterPhone" onKeyReleased="#handleFilterTable"/>
+        </VBox>
+    </HBox>
+
+    <!-- TABLE VIEW PATIENTS -->
+    <TableView fx:id="patientTable" VBox.vgrow="ALWAYS" prefHeight="700">
+        <columns>
+            <TableColumn fx:id="tablePatientColumnGenre" text="Genre"/>
+            <TableColumn fx:id="tablePatientColumnName" text="Nom"/>
+            <TableColumn fx:id="tablePatientColumnFirstname" text="Prénom"/>
+            <TableColumn fx:id="tablePatientColumnBirthday" text="Date de naissance" minWidth="140"/>
+            <TableColumn fx:id="tablePatientColumnCity" text="Ville"/>
+            <TableColumn fx:id="tablePatientColumnPostalCode" text="Code Postal"/>
+            <TableColumn fx:id="tablePatientColumnDepartement" text="Département"/>
+            <TableColumn fx:id="tablePatientColumnEmail" text="Email"/>
+            <TableColumn fx:id="tablePatientColumnMobile" text="Portable"/>
+            <TableColumn fx:id="tablePatientColumnLastUpdate" text="Dernière modification"/>
+        </columns>
+    </TableView>
+</VBox>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.ostheo_projet.ui.controller.ConsultationTableController"
+      spacing="15.0">
+
+    <HBox fx:id="paneFiltersButtons" spacing="20" alignment="BOTTOM_CENTER">
+        <!-- FILTER TABLE TEXTFIELDS -->
+        <VBox spacing="6">
+            <Label text="Recherche (raison, traitement, examen, note...)" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            <TextField fx:id="inputFilterSearch" onKeyReleased="#handleFilterTable" HBox.hgrow="ALWAYS"/>
+        </VBox>
+        <VBox spacing="6" maxWidth="140">
+            <Label text="Date" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            <TextField fx:id="inputFilterDate" onKeyReleased="#handleFilterTable"/>
+        </VBox>
+        <Button fx:id="btnResetFilters" text="Réinitialiser" styleClass="cancel-button" onAction="#handleResetFilters"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <!-- TABLE ACTIONS BUTTONS -->
+        <Button fx:id="btnViewAllConsults" text="Voir toutes les consultations" styleClass="blue-button"
+                visible="false" onAction="#handleViewAllConsults"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <!-- Use of a label in stack pane to show a tooltip when the button is disabled -->
+        <StackPane fx:id="paneBtnAddConsult" alignment="BOTTOM_CENTER">
+            <Button fx:id="btnAddConsult" text="Nouveau" styleClass="green-button" disable="true"
+                    onAction="#handleNewConsult"/>
+        </StackPane>
+
+        <Button fx:id="btnModifyConsult" onAction="#handleUpdateConsult" text="Modifier"
+                styleClass="yellow-button" disable="true"/>
+        <Button fx:id="btnDeleteConsult" text="Supprimer" styleClass="red-button"
+                onAction="#handleDeleteConsult" disable="true"/>
+    </HBox>
+
+
+    <!-- TABLE VIEW PATIENTS -->
+    <TableView fx:id="consultTable" VBox.vgrow="ALWAYS" prefHeight="700">
+        <columns>
+            <TableColumn fx:id="tableConsultColumnPatient" text="Patient" minWidth="180" prefWidth="180" maxWidth="180"/>
+            <TableColumn fx:id="tableConsultColumnDate" text="Date et heure" minWidth="140" prefWidth="140" maxWidth="140"/>
+            <TableColumn fx:id="tableConsultColumnReason" text="Motif"/>
+            <TableColumn fx:id="tableConsultColumnTreatment" text="Traitement"/>
+            <TableColumn fx:id="tableConsultColumnNote" text="Note"/>
+            <TableColumn fx:id="tableConsultColumnLastUpdate" text="Dernière modification" minWidth="140" prefWidth="140" maxWidth="140"/>
+        </columns>
+    </TableView>
+</VBox>

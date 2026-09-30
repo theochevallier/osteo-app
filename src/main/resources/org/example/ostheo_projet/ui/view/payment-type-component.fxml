@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.geometry.Insets?>
+<fx:root type="VBox" spacing="4" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+
+    <HBox fx:id="conteneurComponent" spacing="10" styleClass="payment-type" >
+        <TextField fx:id="inputPayment" promptText="Chèque" minWidth="250"/>
+
+        <HBox.margin>
+            <Insets right="50"/>
+        </HBox.margin>
+
+        <Button fx:id="btnSavePayment" onAction="#handleSavePayment" styleClass="blue-button"/>
+        <Button fx:id="btnArchivePayment" text="archiver" onAction="#handleArchivePayment" styleClass="cancel-button"/>
+        <Button fx:id="btnDeletePayment" text="x" onAction="#handleDeletePayment" styleClass="red-button" visible="false" managed="false"/>
+    </HBox>
+
+    <Label fx:id="lblPaymentMessage" wrapText="true" style="-fx-text-fill: red;"/>
+</fx:root>

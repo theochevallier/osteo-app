@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config" status="TRACE">
+
+    <Appenders>
+
+        <Console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%t] %-5p | %-60c | %m (%F:%L)%n" />
+        </Console>
+
+<!--        Rolling file permet de configurer des fichiers de logs tournants : ils seront historisés avec le file pattern configuré-->
+        <RollingFile
+                name="rollingFile"
+                fileName="${sys:logDir}/logs.txt"
+                filePattern="${sys:logDir}/logs-%d{yyyy-MM-dd}-%i.txt">
+
+<!--            <ThresholdFilter level="ERROR"-->
+<!--                             onMatch="ACCEPT"-->
+<!--                             onMismatch="DENY"/>-->
+
+            <PatternLayout pattern="[%t] %-5p | %-60c | %m (%F:%L)%n" />
+            <Policies>
+<!--                Les fichiers seront historisés tous les jours où si ils font x size MB-->
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+
+        <Root level="warn">
+            <AppenderRef ref="stdout" />
+            <AppenderRef ref="rollingFile" />
+        </Root>
+
+    </Loggers>
+
+</Configuration>

@@ -1,0 +1,693 @@
+
+.root, .vbox, .hbox, .grid-pane, .anchor-pane, .scroll-pane, .scroll-pane > .viewport, .split-pane {
+    -fx-background-color: #f1eded;
+    -fx-font-family: "Arial", "Helvetica";
+}
+
+.hidden {
+    -fx-visible: false;
+}
+
+/* 🔘 Boutons principaux */
+.blue-button, .cancel-button, .green-button, .red-button, .yellow-button, .black-button {
+    -fx-border-width: 0;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-padding: 6 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0.2, 0, 2);
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.blue-button {
+    -fx-background-color: #007aff;
+    -fx-border-color: #004999;
+}
+
+.blue-button:hover {
+    -fx-background-color: #0051d5;
+}
+
+.blue-button:pressed {
+    -fx-background-color: #004999;
+}
+
+.cancel-button {
+    -fx-background-color: #e5e5ea;
+    -fx-border-color: #c2c2c5;
+    -fx-text-fill: #1d1d1f;
+}
+
+.cancel-button:pressed {
+    -fx-background-color: #c1c1c6;
+}
+
+.cancel-button:hover {
+    -fx-background-color: #d1d1d6;
+}
+
+.green-button {
+    -fx-background-color: #35b59c;
+    -fx-border-color: #2a7a68;
+    -fx-text-fill: white;
+}
+
+.green-button:pressed {
+    -fx-background-color: #298c79;
+}
+
+.green-button:hover {
+    -fx-background-color: #2a7a68;
+}
+
+.red-button {
+    -fx-background-color: #f11717;
+    -fx-border-color: #980e0e;
+    -fx-text-fill: white;
+}
+
+.red-button:pressed {
+    -fx-background-color: #980e0e;
+}
+
+.red-button:hover {
+    -fx-background-color: #c91010;
+}
+
+.yellow-button {
+    -fx-background-color: #e8bd4c;
+    -fx-border-color: #daa020;
+    -fx-text-fill: white;
+}
+
+.yellow-button:hover {
+    -fx-background-color: #e5ab1d;
+}
+
+.yellow-button:pressed {
+    -fx-background-color: #daa020;
+}
+
+.underlined-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.underlined-button:hover {
+    -fx-underline: true;
+}
+
+.black-button {
+    -fx-background-color: black;
+    -fx-border-color: #000000;
+    -fx-border-radius: 10;
+    -fx-text-fill: white;
+}
+
+.black-button:hover {
+    -fx-background-color: #232222;
+}
+
+.close-button {
+    -fx-background-color: #a1a1a1;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 6 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0.2, 0, 2);
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.close-button:hover {
+    -fx-background-color: #737272;
+}
+
+.traitement-number-button {
+    -fx-background-color: #007aff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+}
+
+.traitement-number-button:hover {
+    -fx-background-color: #0051d5;
+}
+
+.traitement-number-button:pressed {
+    -fx-background-color: #003d99;
+}
+
+.english-button {
+    -fx-background-image: url("/data/english-flag-gray.png");
+    -fx-background-color: #e3dddd;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0.2, 0, 2);
+    -fx-background-radius: 10;
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+}
+
+.english-button:hover {
+    -fx-background-color: #d1d1d6;
+}
+
+.english-button:activated {
+    -fx-background-image: url("/data/english-flag-colored.png");
+    -fx-background-color: white;
+    -fx-border-color: #007aff;
+}
+
+.logout-button {
+    -fx-background-image: url("/data/out.png");
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0.2, 0, 2);
+    -fx-background-radius: 10;
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-cursor: hand;
+    -fx-padding: 2 4;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+}
+
+.logout-button:hover {
+    -fx-background-color: #d1d1d6;
+}
+
+.osteoporose-button {
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+    /*-fx-border-color: white;*/
+    -fx-effect: null;
+}
+
+.osteoporose-button:active {
+    -fx-border-width: 2;
+}
+
+/*.osteoporose-button:inactive {*/
+/*    -fx-border-width: 2;*/
+/*    -fx-background-color: #e3dddd;*/
+/*}*/
+
+
+/*===================================*/
+/*=========   TEXT FIELD     ========*/
+/*===================================*/
+.text-field, .password-field, .text-area {
+    -fx-background-color: white;
+    -fx-border-color: #d1d1d6;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 6 10;
+    -fx-highlight-fill: #007aff;
+}
+
+.text-field:focused, .password-field:focused, .text-area:focused {
+    -fx-border-color: #007aff;
+}
+
+.text-field:disabled {
+    -fx-text-fill: black;
+    -fx-background-color: #ceced0;
+}
+
+.input-file {
+    -fx-font-size: 12px;
+}
+
+/*===================================*/
+/*=========       CARD       ========*/
+/*===================================*/
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0.2, 0, 2);
+}
+
+/*===================================*/
+/*=========    COMBO BOX     ========*/
+/*===================================*/
+
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #d1d1d6;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 2 8;
+    -fx-font-size: 13px;
+    -fx-text-fill: #1d1d1f;
+}
+
+.combo-box:focused {
+    -fx-border-color: #007aff;
+    -fx-border-width: 2;
+}
+
+.combo-box:hover {
+    -fx-border-color: #a8a8ad;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: white;
+    -fx-border-color: #d1d1d6;
+    -fx-border-radius: 6;
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-padding: 8 10;
+    -fx-text-fill: #1d1d1f;
+    -fx-font-size: 13px;
+}
+
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: #007aff;
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-view .list-cell:selected {
+    -fx-background-color: #35b59c;
+    -fx-text-fill: white;
+}
+
+/*===================================*/
+/*=========    ONGLETS       ========*/
+/*===================================*/
+
+.custom-tabpane .tab-header-background {
+    -fx-padding: 10;
+    -fx-background-color: #35b59c; /* Couleur de fond du header */
+}
+
+.custom-tabpane .tab {
+    -fx-padding: 8 48;
+    -fx-font-size: 14;
+    -fx-background-color: white;
+    -fx-cursor: hand;
+}
+
+.custom-tabpane .tab:selected {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white !important;
+    -fx-font-weight: bold;
+
+    /* Pour supprimer les bordures de focus sur l onglet sélectionné */
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.custom-tabpane .tab:hover {
+    -fx-background-color: #bdb9b9;
+}
+
+.custom-tabpane .tab:selected:focused {
+    -fx-focus-color: transparent;
+    -fx-text-fill: white !important;
+}
+
+/*L accès à l attribut .text corrige un bug où le text de l onglet restait noir*/
+.custom-tabpane .tab:selected .text {
+    -fx-fill: white !important;
+}
+
+/*===================================*/
+/*=========    TABLE VIEW    ========*/
+/*===================================*/
+
+.table-view {
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-radius: 8 8 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: #35b59c;
+    -fx-font-weight: bold;
+    -fx-font-size: 11;
+    -fx-padding: 10 5;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #e0e0e0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #f5f5f7;
+    -fx-text-fill: #1d1d1f;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #e8e8eb;
+    -fx-text-fill: white !important;
+}
+
+.table-view .table-row-cell:selected .text {
+    -fx-fill: white !important;
+}
+
+.table-view .table-row-cell:selected:hover {
+    -fx-background-color: #d9d9dc;
+    -fx-text-fill: white !important;;
+}
+
+.table-view .table-row-cell:selected:focused {
+    -fx-background-color: #007aff;
+    -fx-text-fill: white !important;
+}
+
+.table-view .table-cell {
+    /*-fx-text-fill: #1d1d1f;*/
+    -fx-padding: 8;
+}
+
+.table-view .table-cell:selected:focused {
+    -fx-text-fill: white !important;
+}
+
+/*===================================*/
+/*========   ALERT DIALOG    ========*/
+/*===================================*/
+.alert {
+    -fx-font-family: 'System Font';
+    -fx-font-size: 13;
+    -fx-padding: 15;
+    -fx-background-color: white;
+}
+
+.alert .dialog-pane {
+    -fx-font-family: 'System Font';
+    -fx-font-size: 13;
+    -fx-padding: 15;
+}
+
+.alert .header-panel {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+.alert .label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 13;
+}
+
+.alert .button {
+    -fx-font-size: 12;
+    -fx-padding: 8 20 8 20;
+}
+
+/*Personalisation des boutons dans la fenêtre d alerte  Confirmation */
+.dialog-pane .button {
+    -fx-padding: 8 20 8 20;
+    -fx-font-size: 12;
+    -fx-cursor: hand;
+}
+
+.dialog-pane .button:default {
+    -fx-background-color: #007aff;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane .button:default:hover {
+    -fx-background-color: #0051d5;
+}
+
+.dialog-pane .button:default:pressed {
+    -fx-background-color: #003d99;
+}
+
+.dialog-pane .button:cancel {
+    -fx-background-color: #e8e8eb;
+    -fx-text-fill: #1d1d1f;
+}
+
+.dialog-pane .button:cancel:hover {
+    -fx-background-color: #d9d9dc;
+}
+
+/*Personnalisation des boutons dans les dialog alert*/
+.btn-open-file {
+    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #4CAF50 0%, #45a049 100%);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 20px;
+    -fx-border-radius: 5;
+}
+
+.btn-open-file:hover {
+    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #45a049 0%, #3d8b40 100%);
+}
+
+.btn-open-dir {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 20px;
+    -fx-border-radius: 5;
+}
+
+/*===================================*/
+/*=========    LIST VIEW     ========*/
+/*===================================*/
+
+.list-view {
+    -fx-background-color: white;
+    -fx-border-color: #d1d1d6;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 0;
+}
+
+.list-view .list-cell {
+    -fx-padding: 10 12;
+    -fx-text-fill: #1d1d1f;
+    -fx-font-size: 13px;
+    -fx-background-color: white;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: #f5f5f7;
+}
+
+.list-view .list-cell:selected {
+    -fx-background-color: #007aff;
+    -fx-text-fill: white !important;
+    -fx-font-weight: bold;
+}
+
+.list-view .list-cell:selected:hover {
+    -fx-background-color: #0051d5;
+}
+
+.list-view .list-cell:focused:selected {
+    -fx-background-color: #007aff;
+    -fx-text-fill: white !important;
+}
+
+/*===================================*/
+/*====   MENU BOUTONS GAUCHE     ====*/
+/*===================================*/
+
+.menu-button {
+    -fx-border-color: #d1d1d6;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 10;
+    -fx-font-size: 13;
+    -fx-cursor: hand;
+    -fx-margin: 5 0 5 0;
+}
+
+.menu-button:pressed {
+    -fx-background-color: #007aff;
+    -fx-text-fill: white;
+}
+
+.menu-button-active {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+}
+
+.menu-button-inactive {
+    -fx-background-color: #d1d1d6;
+    -fx-text-fill: #1d1d1f;
+    -fx-border-color: transparent;
+}
+
+.menu-button-inactive:hover {
+    -fx-background-color: #b9b9b9;
+}
+
+/*===================================*/
+/*====         CHECK BOX         ====*/
+/*===================================*/
+.check-box > .box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #1e1e1e;
+    -fx-border-width: 2;
+}
+
+.check-box:selected > .box {
+    -fx-background-color: #007bff;
+    -fx-border-color: #007bff;
+}
+
+.check-box:selected > .box > .mark {
+    -fx-background-color: white;
+
+    /* Personalized SVG shape for the check mark */
+    -fx-shape: "M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z";
+}
+
+/* Comportement lors du survol de la souris (Hover) */
+.check-box:hover > .box {
+    /*-fx-border-color: #003b6e;*/
+}
+
+.check-relocation {
+    -fx-padding: 8;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.check-relocation:hover {
+    -fx-background-color: #9dc8f8;
+}
+
+.check-relocation:selected {
+    -fx-border-color: #007bff;
+    -fx-background-color: #9dc8f8;
+}
+
+.check-red:selected {
+    -fx-padding: 8;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-color: #ff0000;
+    -fx-background-color: #fa8484;
+}
+
+
+/*===================================*/
+/*=====          LABEL          =====*/
+/*===================================*/
+
+.label-left-space {
+    -fx-padding: 0 0 0 20px;
+}
+
+.label {
+    -fx-text-fill: #1d1d1f;
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+}
+
+.label-value {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1d1d1f;
+}
+
+.label-of-value {
+    -fx-text-fill: #949496;
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+}
+
+.label-red {
+    -fx-background-color: #ff0000;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-padding: 4 6;
+    -fx-font-weight: bold;
+}
+
+.file-label {
+    -fx-padding: 8;
+    -fx-border-color: #257c6b;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-font-size: 12px;
+    -fx-background-color: rgb(71, 241, 206);
+}
+
+
+/*===================================*/
+/*====    PERSONALIZED CLASSES   ====*/
+/*===================================*/
+
+.labelized-form .text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/*!*===================================*!*/
+/*!*======    SCROLL BAR         ======*!*/
+/*!*===================================*!*/
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb  {
+    -fx-background-color: #57595b;
+    -fx-border-radius: 8;
+}
+
+.scroll-bar:selected {
+    -fx-opacity: 0;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+
+/*!*===================================*!*/
+/*!*======    SEPARATOR          ======*!*/
+/*!*===================================*!*/
+.separator .line {
+    -fx-background-color: #363636;
+    -fx-pref-height: 5;
+    -fx-border-color: null ;
+    -fx-background-radius: 8;
+}
+
+/*!*===================================*!*/
+/*!*====  PAYMENT TYPE COMPONENT   ====*!*/
+/*!*===================================*!*/
+.payment-type {
+    -fx-padding: 8;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-color: #007bff;
+    -fx-background-color: #9dc8f8;
+}

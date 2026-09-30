@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" style="-fx-padding: 30;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.ostheo_projet.ui.controller.ImportDialogController" spacing="30">
+
+    <Label text="Importer d'anciennes données à partir de fichiers CSV"
+           style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1d1d1f;"/>
+
+    <VBox spacing="6" alignment="CENTER_LEFT">
+        <Label text="Rappel : les fichiers doivent être au format CSV et respecter la structure suivante :"
+               styleClass="label-of-value"/>
+        <Label text="Patient : Adresse, CodePostalVille, DateNaissance, Email, ID_Patient, Nom, Prénom, Profession, Téléphone"/>
+        <Label text="Informations médicales : Examens complémentaires, Histoire_Médicale, ID_DossierMedical, TTTMedic" />
+        <Label text="Informations traitements : ID_DossierMedical, ID_TTT, Mode_Paiement, Montant, Motif Consultation, Note_remarque, Traitement" />
+    </VBox>
+
+    <VBox spacing="8">
+        <Label text="Répertoire contenant les fichiers :"
+               styleClass="label"/>
+        <HBox spacing="16">
+            <TextField fx:id="inputDirectoryImportFiles" HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnOpenFinderDirectoryImportFiles" text="Choisir" styleClass="blue-button"
+                    onAction="#handleOpenFinderDirectoryImportFiles"/>
+        </HBox>
+
+        <Label fx:id="lblImportStatus" styleClass="label-of-value"/>
+    </VBox>
+
+    <Button text="Importer" styleClass="blue-button" onAction="#handleImport"  />
+</VBox>

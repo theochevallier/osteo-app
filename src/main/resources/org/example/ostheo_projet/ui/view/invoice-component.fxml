@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import org.example.ostheo_projet.ui.component.AutoCompleteTextField?>
+<fx:root fx:id="root" type="VBox" minWidth="530" xmlns="http://javafx.com/javafx/25"
+         xmlns:fx="http://javafx.com/fxml/1">
+    <VBox spacing="12" styleClass="card">
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER"
+                    style="-fx-padding: 10; -fx-background-color: white;" VBox.vgrow="ALWAYS">
+            <VBox spacing="12" style="-fx-background-color: white;">
+
+                <VBox alignment="TOP_CENTER" spacing="16">
+                    <HBox spacing="20">
+                        <Button styleClass="black-button" text="x" onAction="#handleCloseInvoice"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <HBox fx:id="paneActionButtonsShow" spacing="10">
+                            <Button fx:id="btnGenerateInvoice" styleClass="green-button" text="PDF" onAction="#handleGeneratePDFInvoice"/>
+                            <Button fx:id="btnShowInvoiceFinder" styleClass="blue-button" text="Finder"
+                                    onAction="#handleShowInvoiceInFinder"/>
+                        </HBox>
+
+                        <Button fx:id="btnModifyInvoice" styleClass="yellow-button" text="Modifier"
+                                onAction="#handleUpdateInvoice" visible="false"/>
+                    </HBox>
+
+                    <Label fx:id="lblTitlePage" styleClass="label-title"/>
+                </VBox>
+
+                <!-- PANE SHOW INVOICE -->
+                <VBox fx:id="paneShowInvoice" spacing="10" style="-fx-padding: 10;">
+                    <!-- Patient infos -->
+                    <VBox styleClass="card" spacing="10">
+                        <Label text="Patient" styleClass="label-of-value"
+                               style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <HBox spacing="30">
+                            <VBox spacing="6">
+                                <Label text="Nom" styleClass="label-of-value"/>
+                                <Label fx:id="lblLastnamePatientInvoice" styleClass="label-value"/>
+                            </VBox>
+                            <VBox spacing="6">
+                                <Label text="Prénom" styleClass="label-of-value"/>
+                                <Label fx:id="lblFirstnamePatientInvoice" styleClass="label-value"/>
+                            </VBox>
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Date de naissance" styleClass="label-of-value"/>
+                                <Label fx:id="lblBirthdayPatientInvoice" styleClass="label-value"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Consultation infos -->
+                    <VBox styleClass="card" spacing="10">
+                        <Label text="Consultation" styleClass="label-of-value"
+                               style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <HBox spacing="14">
+                            <VBox spacing="6">
+                                <Label text="Date et heure" styleClass="label-of-value"/>
+                                <Label fx:id="lblDateConsultInvoice" styleClass="label-value" HBox.hgrow="ALWAYS"
+                                       minWidth="140"/>
+                            </VBox>
+                            <VBox spacing="6">
+                                <Label text="Raison de la consultation" styleClass="label-of-value"/>
+                                <Label fx:id="lblReasonConsultInvoice" styleClass="label-value" wrapText="true"
+                                       maxWidth="240"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- SHOW NODES -->
+                    <!-- Invoice infos -->
+                    <VBox fx:id="paneShowInvoiceInfosCheque" spacing="10">
+                        <VBox styleClass="card" spacing="10">
+                            <Label text="Facture" styleClass="label-of-value"
+                                   style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+
+                            <HBox spacing="30">
+                                <VBox spacing="6">
+                                    <Label text="Montant" styleClass="label-of-value"/>
+                                    <Label fx:id="lblAmountInvoice" styleClass="label-value"/>
+                                </VBox>
+                                <VBox spacing="6">
+                                    <Label text="Moyen de paiement" styleClass="label-of-value"/>
+                                    <Label fx:id="lblPaymentTypeInvoice" styleClass="label-value"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+
+                        <!-- Cheque infos -->
+                        <VBox styleClass="card" spacing="10">
+                            <Label text="Chèque" styleClass="label-of-value"
+                                   style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+
+                            <HBox spacing="30">
+                                <VBox spacing="6">
+                                    <Label text="Référence du chèque" styleClass="label-of-value"/>
+                                    <Label fx:id="lblChequeRefInvoice" styleClass="label-value"/>
+                                </VBox>
+                                <VBox spacing="6">
+                                    <Label text="Référence du dépôt" styleClass="label-of-value"/>
+                                    <Label fx:id="lblChequeDepositIdInvoice" styleClass="label-value"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- EDIT NODES -->
+                    <!-- Invoice infos -->
+                    <VBox fx:id="paneEditInvoiceInfosCheque" spacing="10" visible="false">
+                        <VBox styleClass="card" spacing="10">
+                            <Label text="Facture" styleClass="label-of-value"
+                                   style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+
+                            <VBox spacing="30">
+                                <!--  Choix du montant : 30, 55 et autre-->
+                                <VBox spacing="6">
+                                    <Label text="Montant" styleClass="label"/>
+                                    <HBox spacing="20.0">
+                                        <RadioButton fx:id="toggle1" text="30€" userData="30"
+                                                     toggleGroup="$amountToggleGroup"/>
+                                        <RadioButton fx:id="toggle2" text="55€" userData="55"
+                                                     toggleGroup="$amountToggleGroup"/>
+                                        <RadioButton fx:id="toggle3" text="Autre" userData="autre"
+                                                     toggleGroup="$amountToggleGroup"/>
+
+                                        <TextField fx:id="inputCustomAmount" promptText="Montant" disable="true"
+                                                   maxWidth="120"/>
+                                    </HBox>
+                                </VBox>
+
+                                <!--  Choix du type de paiement : Espèces, Carte bancaire, Chèque, Virement-->
+                                <VBox spacing="6">
+                                    <Label text="Moyen de paiement" styleClass="label"/>
+                                    <ComboBox fx:id="comboPaymentType" promptText="Sélectionner un moyen de paiement"/>
+                                </VBox>
+                            </VBox>
+                        </VBox>
+
+                        <!-- Cheque infos -->
+                        <VBox styleClass="card" spacing="10">
+                            <Label text="Chèque" styleClass="label-of-value"
+                                   style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+
+                            <HBox spacing="30">
+                                <VBox spacing="6">
+                                    <Label text="Référence du chèque" styleClass="label"/>
+                                    <TextField fx:id="inputChequeRefInvoice"/>
+                                </VBox>
+                                <VBox spacing="6">
+                                    <Label text="Référence du dépôt" styleClass="label"/>
+                                    <AutoCompleteTextField fx:id="inputChequeDepositIdInvoice"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <Label fx:id="lblErrorMessageInvoice" styleClass="label-red" wrapText="true" visible="false"/>
+
+                    <!-- ACTION BUTTONS -->
+                    <HBox fx:id="paneActionButtonsEdit" alignment="BOTTOM_RIGHT" spacing="10" visible="false">
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <Button text="Annuler" styleClass="cancel-button" onAction="#handleCancelModifyInvoice"/>
+                        <Button text="Enregistrer" styleClass="blue-button" onAction="#handleSaveInvoice"/>
+                    </HBox>
+
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </VBox>
+</fx:root>

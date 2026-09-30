@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox alignment="CENTER" style="-fx-padding: 30;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.ostheo_projet.ui.controller.RestoreDialogController">
+
+    <Label text="Restaurer la base de données à partir d'un fichier de sauvegarde" prefWidth="400" wrapText="true"
+           style="-fx-font-size: 16; -fx-font-weight: bold; -fx-padding: 0 0 25px 0;"/>
+
+    <VBox spacing="6.0" style="-fx-padding: 20px 40px 30px 40px;" >
+        <Label text="Sélectionnez le fichier :" style="-fx-font-size: 14; -fx-font-weight: bold;" />
+
+        <HBox spacing="5">
+            <TextField HBox.hgrow="ALWAYS" fx:id="inputSelectedFile" styleClass="input-file" minHeight="28.0" editable="false" />
+            <Button fx:id="btnOpenFolder" text="Ouvrir" styleClass="blue-button" onAction="#handleChooseFile" />
+        </HBox>
+
+    </VBox>
+
+    <Button text="Restaurer" styleClass="blue-button" onAction="#handleRestore" disable="true" fx:id="btnRestore">
+        <VBox.margin>
+            <Insets bottom="20"/>
+        </VBox.margin>
+    </Button>
+</VBox>

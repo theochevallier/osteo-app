@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="org.example.ostheo_projet.ui.controller.PractitionerInitController"
+           fx:id="rootPane">
+    <VBox alignment="CENTER" spacing="20.0" style="-fx-padding: 60;">
+        <!-- Titre -->
+        <Label text="Logiciel Pathos" style="-fx-font-size: 32; -fx-font-weight: bold; -fx-text-fill: #1d1d1f;"/>
+
+        <!-- Sous-titre -->
+        <Label fx:id="lblTitle" text="Bienvenue ! Veuillez remplir les champs pour créer votre compte utilisateur."
+               wrapText="true" style="-fx-font-size: 14; -fx-text-fill: #86868b;"/>
+        <Label text="Vous pourrez ensuite paramétrer le logiciel à partir de la page d'accueil." wrapText="true"
+               style="-fx-font-size: 14; -fx-text-fill: #86868b;"/>
+
+        <!-- Formulaire -->
+        <VBox fx:id="formPane" spacing="16.0" style="-fx-max-width: 300;" alignment="CENTER">
+            <!-- Champ Username -->
+            <VBox spacing="6.0">
+                <Label text="Nom d'utilisateur"
+                       style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                <TextField fx:id="inputUsername" promptText="Entrez votre nom d'utilisateur"/>
+            </VBox>
+
+            <!-- Champ Firstname -->
+            <VBox spacing="6.0">
+                <Label text="Prénom"
+                       style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                <TextField fx:id="inputFirstname" promptText="Entrez votre prénom"/>
+            </VBox>
+
+            <!-- Champ Lastname -->
+            <VBox spacing="6.0">
+                <Label text="Nom"
+                       style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                <TextField fx:id="inputLastname" promptText="Entrez votre nom"/>
+            </VBox>
+
+            <!-- Champ Password -->
+            <VBox spacing="6.0">
+                <Label text="Mot de passe" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                <PasswordField fx:id="inputPassword" promptText="Entrez votre mot de passe"/>
+            </VBox>
+            <VBox spacing="6.0">
+                <Label text="Confirmer le mot de passe" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                <PasswordField fx:id="inputConfirmedPassword" promptText="Entrez à nouveau votre mot de passe"/>
+            </VBox>
+
+            <Label fx:id="lblMessage" style="-fx-text-fill: red;" visible="false"/>
+
+            <!-- Bouton Connexion -->
+            <Button fx:id="btnSave" styleClass="blue-button" text="Se connecter" onAction="#handleSaveInit"/>
+        </VBox>
+    </VBox>
+</StackPane>

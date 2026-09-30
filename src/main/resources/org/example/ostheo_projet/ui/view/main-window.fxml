@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.ostheo_projet.ui.controller.MainWindowController"
+>
+    <MenuBar useSystemMenuBar="true">
+        <menus>
+            <Menu mnemonicParsing="false" text="Patient">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Rechercher"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Consultation">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Nouveau"/>
+                    <MenuItem mnemonicParsing="false" text="Rechercher"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Compte">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Paramétrer le logiciel" onAction="#showEditConfigureApp"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Données">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Exporter la comptabilité"
+                                                  onAction="#handleExportComptaExcel"/>
+                    <MenuItem mnemonicParsing="false" text="Exporter les données patients"/>
+                    <MenuItem mnemonicParsing="false" text="Importer des données" onAction="#handleImportData"/>
+                    <MenuItem mnemonicParsing="false" text="Sauvegarder la base de données" onAction="#saveDatabase"/>
+                    <MenuItem mnemonicParsing="false" text="Restaurer la base de données"/>
+                    <!--                              onAction="#restoreDatabase"/>-->
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="About"/>
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+
+    <TabPane styleClass="custom-tabpane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" AnchorPane.topAnchor="0"
+             AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" fx:id="tabPaneApplication">
+        <tabs>
+            <Tab closable="false" text="Patient" fx:id="tabPatient">
+                <content>
+                    <VBox spacing="10" style="-fx-padding: 10;">
+                        <Button fx:id="btnBackPatient" text="Retour" styleClass="black-button"
+                                onAction="#handleNavigateBackPatient" visible="false"/>
+
+                        <VBox fx:id="rootConteneurPatient" VBox.vgrow="ALWAYS">
+                        </VBox>
+                    </VBox>
+                </content>
+            </Tab>
+
+            <Tab closable="false" text="Consultation" fx:id="tabConsultation">
+                <content>
+                    <VBox spacing="10" style="-fx-padding: 10;">
+                        <Button fx:id="btnBackConsult" text="Retour" styleClass="black-button"
+                                onAction="#handleNavigateBackConsult" visible="false"/>
+
+                        <VBox fx:id="rootConteneurConsultation" VBox.vgrow="ALWAYS">
+                        </VBox>
+                    </VBox>
+
+                </content>
+            </Tab>
+
+            <Tab closable="false" text="Compta" fx:id="tabCompta">
+                <content>
+                    <VBox spacing="10" style="-fx-padding: 10;">
+                        <Button fx:id="btnBackCompta" text="Retour" styleClass="black-button"
+                                onAction="#handleNavigateBackCompta" visible="false"/>
+
+                        <VBox fx:id="rootConteneurCompta" VBox.vgrow="ALWAYS">
+                        </VBox>
+                    </VBox>
+                </content>
+            </Tab>
+        </tabs>
+
+    </TabPane>
+
+    <HBox spacing="10" AnchorPane.rightAnchor="15" AnchorPane.topAnchor="15">
+        <!--    Pop up with general message -->
+        <HBox fx:id="generalMessagePopUp" styleClass="card" style="-fx-padding: 12 16;"
+              spacing="10" alignment="CENTER" visible="false">
+            <Button fx:id="btnCloseMessagePopUp" text="x" styleClass="red-button" style="-fx-padding: 4 10;"
+                    onAction="#handleCloseMessagePopUp" />
+            <Label fx:id="lblGeneralMessage" style="-fx-text-fill: white;"/>
+        </HBox>
+
+        <!--    Card with current patient label -->
+        <HBox styleClass="card" style="-fx-padding: 12 16;"
+              spacing="10" alignment="CENTER">
+            <Button fx:id="btnPopOutPatient" text="x" styleClass="red-button" style="-fx-padding: 4 10;"
+                    onAction="#handlePopOutPatient" visible="false"/>
+            <Label fx:id="lblCurrentPatientName" style="-fx-text-fill: black;" text="Aucun patient sélectionné"/>
+        </HBox>
+    </HBox>
+
+
+    <!-- Title of the window -->
+    <VBox fx:id="conteneurLabelTabPane" AnchorPane.topAnchor="10" styleClass="card" style="-fx-padding: 10 14;">
+        <Label text="PATHOS" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: black;"/>
+    </VBox>
+
+</AnchorPane>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.ostheo_projet.ui.controller.ComptaTableController"
+      spacing="15.0">
+
+    <!-- ACTIONS BUTTONS -->
+    <HBox spacing="26" alignment="BOTTOM_CENTER">
+        <!-- FILTER TABLE TEXTFIELDS -->
+        <VBox spacing="6">
+            <Label text="Date de consultation" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+
+            <HBox spacing="4">
+                <ComboBox fx:id="comboFilterConsultDateMonth" promptText="Mois" onAction="#handleSelectComboConsultDateMonth" HBox.hgrow="ALWAYS"/>
+                <ComboBox fx:id="comboFilterConsultDateYear" promptText="Année" onAction="#handleSelectComboConsultDateYear" HBox.hgrow="ALWAYS"/>
+            </HBox>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="Mode de paiement" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            <ComboBox fx:id="comboFilterPaymentType" promptText="Moyen de paiement" onAction="#handleSelectComboPaymentType" HBox.hgrow="ALWAYS"/>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="N° remise de chèque" style="-fx-text-fill: #1d1d1f; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            <TextField fx:id="inputFilterChequeDepositId" onKeyReleased="#handleFilterTableDepositId" HBox.hgrow="ALWAYS"/>
+        </VBox>
+
+        <Button fx:id="btnResetFilters" text="Réinitialiser" styleClass="cancel-button" onAction="#handleResetFilters"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+<!--        TODO : Fix css padding pb-->
+        <SplitPane>
+            <tooltip>
+                <Tooltip text="Sélectionner une consultation pour créer une nouvelle facture"/>
+            </tooltip>
+
+            <Button fx:id="btnAddInvoice" text="Nouveau" styleClass="green-button" disable="true"
+                    onAction="#handleNewInvoice">
+            </Button>
+        </SplitPane>
+
+        <Button fx:id="btnModifyInvoice" onAction="#handleUpdateInvoice" text="Modifier"
+                styleClass="yellow-button" disable="true">
+        </Button>
+        <Button fx:id="btnDeleteInvoice" text="Supprimer" styleClass="red-button"
+                onAction="#handleDeleteInvoice" disable="true">
+        </Button>
+    </HBox>
+
+    <HBox spacing="10">
+        <!-- TABLE VIEW PATIENTS -->
+        <TableView fx:id="comptaTable" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" prefHeight="700">
+            <columns>
+                <TableColumn fx:id="tableComptaColumnInvoiceNumber" text="Numéro de facture"/>
+                <TableColumn fx:id="tableComptaColumnPatient" text="Patient"/>
+                <TableColumn fx:id="tableComptaColumnConsultDate" text="Date de consultation"/>
+                <TableColumn fx:id="tableComptaColumnConsultReason" text="Raison de la consultation" prefWidth="200"/>
+                <TableColumn fx:id="tableComptaColumnAmount" text="Montant"/>
+                <TableColumn fx:id="tableComptaColumnPaymentType" text="Moyen de paiement"/>
+                <TableColumn fx:id="tableComptaColumnChequeRef" text="Réf chèque"/>
+                <TableColumn fx:id="tableComptaColumnChequeDepositId" text="Réf dépôt chèque"/>
+            </columns>
+        </TableView>
+
+        <!-- CARD VIEW INVOICE -->
+        <VBox fx:id="cardViewInvoice">
+            <!--            style="-fx-padding: 20"-->
+        </VBox>
+    </HBox>
+
+    <!-- TOTAL AMOUNTS -->
+    <HBox spacing="18">
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <HBox spacing="6" alignment="CENTER">
+            <Label text="Nombre de factures : " styleClass="label"/>
+            <Label fx:id="labelTotalInvoices" styleClass="label-of-value"/>
+        </HBox>
+
+        <HBox spacing="6" alignment="CENTER">
+            <Label text="Montant total : " styleClass="label"/>
+            <Label fx:id="labelTotalAmount" styleClass="label-of-value"/>
+        </HBox>
+    </HBox>
+</VBox>

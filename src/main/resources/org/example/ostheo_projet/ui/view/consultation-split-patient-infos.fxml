@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.ostheo_projet.ui.controller.ConsultationSplitPatientInfosController"
+>
+
+    <!-- Conteneur principal avec scroll pane -->
+    <SplitPane fx:id="splitPaneConsult" dividerPositions="0.6">
+        <items>
+            <!-- Conteneur consultation(s) -->
+            <AnchorPane>
+                <ScrollPane fx:id="scrollPaneConsultation" fitToWidth="true" hbarPolicy="NEVER" style="-fx-padding: 0;" VBox.vgrow="ALWAYS" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
+                    <VBox fx:id="conteneurConsultation">
+                    </VBox>
+                </ScrollPane>
+
+                <!-- Conteneur consultations incr nb buttons -->
+                <AnchorPane fx:id="anchorLinkButtons" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="300" visible="false" >
+                    <VBox fx:id="conteneurConsultationLinkButtons" visible="false" managed="false" spacing="8">
+                    </VBox>
+                    <Button fx:id="btnShowConsultBtnLinks" styleClass="blue-button" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" style="-fx-opacity: 0.7;"/>
+                </AnchorPane>
+
+            </AnchorPane>
+
+            <!-- Conteneur patient infos -->
+            <ScrollPane fx:id="scrollPanePatient" fitToWidth="true" hbarPolicy="NEVER" style="-fx-padding: 0;"
+                        VBox.vgrow="ALWAYS">
+
+                <VBox spacing="15">
+                    <Button fx:id="btnChangeSplitDivider" styleClass="green-button" onAction="#handleChangeSplitDivider"/>
+
+                    <HBox alignment="CENTER" >
+                        <Button fx:id="btnShowPatientInfosComponent" styleClass="menu-button, menu-button-active" onAction="#handleShowPatientInfosComponent" text="Fiche patient" prefWidth="250" />
+                        <Button fx:id="btnShowInvoiceComponent" styleClass="menu-button, menu-button-inactive" onAction="#handleShowInvoiceComponent" text="Facturation" prefWidth="250" visible="false" managed="false"/>
+                    </HBox>
+
+                    <!-- Invoice pane -->
+                    <VBox fx:id="paneInvoice" spacing="16" style="-fx-padding: 10;">
+
+                        <VBox styleClass="card" spacing="16">
+                            <Label text="Facturation" styleClass="label-of-value" style="-fx-font-weight: bold; -fx-font-size: 16;" />
+
+                            <VBox fx:id="paneCreateShowInvoice" spacing="16">
+                                <Label fx:id="lblPaneInvoiceMessage" wrapText="true" />
+
+                                <HBox alignment="CENTER_RIGHT" spacing="8">
+                                    <Button fx:id="btnCreateInvoice" styleClass="blue-button" onAction="#handleCreateInvoice" text="Créer une facture" visible="false" managed="false"/>
+                                </HBox>
+                            </VBox>
+                        </VBox>
+
+                        <VBox fx:id="conteneurInvoice" />
+                    </VBox>
+
+                    <VBox fx:id="conteneurPatientInfos" VBox.vgrow="ALWAYS" />
+                </VBox>
+            </ScrollPane>
+        </items>
+    </SplitPane>
+
+</VBox>

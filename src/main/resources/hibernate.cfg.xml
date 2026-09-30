@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Propriétés de connexion PostgreSQL -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+
+        <!-- Pool de connexions -->
+        <property name="hibernate.hikari.maximumPoolSize">20</property>
+        <property name="hibernate.hikari.minimumIdle">5</property>
+
+        <!-- Génération auto de la base -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Format et affichage SQL -->
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.use_sql_comments">true</property>
+
+        <!-- Support des annotations Jakarta -->
+        <property name="hibernate.query.in_clause_parameter_padding">true</property>
+
+        <!-- Classes mappées -->
+        <mapping class="org.example.ostheo_projet.model.Patient"/>
+        <mapping class="org.example.ostheo_projet.model.City"/>
+        <mapping class="org.example.ostheo_projet.model.Departement"/>
+        <mapping class="org.example.ostheo_projet.model.Region"/>
+        <mapping class="org.example.ostheo_projet.model.Practitioner"/>
+        <mapping class="org.example.ostheo_projet.model.PaymentType"/>
+        <mapping class="org.example.ostheo_projet.model.Invoice"/>
+        <mapping class="org.example.ostheo_projet.model.Consultation"/>
+        <mapping class="org.example.ostheo_projet.model.Job"/>
+        <mapping class="org.example.ostheo_projet.model.Configuration" />
+
+    </session-factory>
+</hibernate-configuration>

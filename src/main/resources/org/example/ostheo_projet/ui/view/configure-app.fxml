@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.ScrollPane?>
+<HBox xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.ostheo_projet.ui.controller.ConfigureAppController">
+
+    <!-- Menu à gauche -->
+    <VBox fx:id="paneLeftMenu" prefWidth="180.0" minWidth="180"
+          style="-fx-background-color: #f5f5f7; -fx-border-color: #d1d1d6; -fx-border-width: 0 1 0 0;">
+        <Button fx:id="btnGeneralInfos" text="Général" styleClass="menu-button, menu-button-active"
+                onAction="#handleClickGeneralInfos" style="-fx-max-width: Infinity;"/>
+        <Button fx:id="btnCredientalInfos" text="Compte" styleClass="menu-button, menu-button-inactive"
+                onAction="#handleClickCredentialInfos" style="-fx-max-width: Infinity;"/>
+        <Button fx:id="btnPracticien" text="Praticien" styleClass="menu-button, menu-button-inactive"
+                onAction="#handleClickPracticien" style="-fx-max-width: Infinity;"/>
+        <Button fx:id="btnCabinet" text="Cabinet" styleClass="menu-button, menu-button-inactive"
+                onAction="#handleClickCabinet" style="-fx-max-width: Infinity;"/>
+        <Button fx:id="btnPaymentType" text="Types de paiements" styleClass="menu-button, menu-button-inactive"
+                onAction="#handleClickPaymentType" style="-fx-max-width: Infinity;"/>
+    </VBox>
+
+    <!-- Contenu principal -->
+    <VBox fx:id="conteneurRoot" HBox.hgrow="ALWAYS" spacing="20.0">
+        <padding>
+            <Insets top="20" left="20" right="20" bottom="20"/>
+        </padding>
+
+        <!--        paramétrer le chemin d'ouverture selection fichiers consultation-->
+        <!--        fiche practicien avec toutes ses infos-->
+        <!--        infos du cabinet etc pour les factures-->
+        <!--        les types de paiement-->
+
+        <!--        GENERAL INFORMATIONS-->
+        <VBox fx:id="paneGeneralInfos" VBox.vgrow="ALWAYS">
+
+            <!-- File selector default directory -->
+            <VBox spacing="12.0">
+                <Label text="Modifier les informations générales du logiciel"
+                       style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1d1d1f;"/>
+
+                <VBox spacing="6">
+                    <Label text="Répertoire par défaut pour la sélection des fichiers à joindre à une consultation"
+                           styleClass="label"/>
+                    <HBox spacing="16">
+                        <TextField fx:id="inputDefaultPathFileConsult" HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="btnOpenFinderDefaultConsultFilePath" text="Choisir" styleClass="blue-button"
+                                onAction="#handleOpenFinderDefaultConsultFilePath"/>
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="Nombre maximum de résultats à afficher dans les tables (patients, consultations, factures)"
+                           styleClass="label"/>
+                    <TextField fx:id="inputMaxTableResults" HBox.hgrow="ALWAYS"/>
+                </VBox>
+
+                <Label fx:id="lblMessageGeneralInfos" style="-fx-text-fill: red;" visible="false"/>
+
+                <HBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Enregistrer" styleClass="blue-button" onAction="#handleUpdateGeneralInfos"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <!-- CREDENTIAL INFORMATIONS-->
+        <VBox fx:id="paneCredentialInfos" VBox.vgrow="ALWAYS" visible="false">
+            <!-- Username -->
+            <VBox spacing="16.0">
+                <Label text="Modifier les informations du compte"
+                       style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1d1d1f;"/>
+
+                <VBox spacing="6">
+                    <Label text="Identifiant de connexion"
+                           styleClass="label"/>
+                    <TextField fx:id="inputUsernameCredential" HBox.hgrow="ALWAYS" maxWidth="360"/>
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="Mettre à jour votre mot de passe" styleClass="label"/>
+                    <PasswordField fx:id="inputPassword" promptText="Entrez votre mot de passe actuel" maxWidth="360"/>
+                    <PasswordField fx:id="inputNewPassword" promptText="Entrez votre nouveau mot de passe"
+                                   maxWidth="360"/>
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS"/>
+                <Label fx:id="lblMessageCredentialInfos" style="-fx-text-fill: red;" visible="false"/>
+
+                <HBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Enregistrer" styleClass="blue-button" onAction="#handleUpdateCredentialInfos"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <!--        PRATICIEN INFOS-->
+        <VBox fx:id="panePracticienInfos" VBox.vgrow="ALWAYS" visible="false">
+            <VBox spacing="14.0" VBox.vgrow="ALWAYS">
+                <Label text="Modifier les informations du praticien (apparait sur les factures)"
+                       style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1d1d1f;"/>
+
+                <GridPane fx:id="gridPanePracticienInfos" hgap="20" vgap="25">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50.0"/>
+                        <ColumnConstraints percentWidth="50.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="20.0" vgrow="ALWAYS"/>
+                        <RowConstraints minHeight="20.0" vgrow="ALWAYS"/>
+                        <RowConstraints minHeight="20.0" vgrow="ALWAYS"/>
+                    </rowConstraints>
+                    <children>
+
+                        <!-- Ligne 1: Firstname, Lastname -->
+                        <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <Label text="Prénom"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                            <TextField fx:id="inputFirstnamePracticien" promptText="Prénom"/>
+                        </VBox>
+                        <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <Label text="Nom"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                            <TextField fx:id="inputLastnamePracticien" promptText="Nom"/>
+                        </VBox>
+
+                        <!-- Ligne 2: Email, phone -->
+                        <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                            <Label text="Email"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                            <TextField fx:id="inputEmailPracticien" promptText="example@ex.com"/>
+                        </VBox>
+                        <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <Label text="N° de téléphone"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                            <TextField fx:id="inputPhonePracticien" promptText="N° de téléphone"/>
+                        </VBox>
+
+                        <!--                        N° RPPS-->
+                        <!-- Ligne 2: N° RPPS, practicien invoice label -->
+                        <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                            <Label text="Libellé practicien"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                            <TextField fx:id="inputLabelPracticien" promptText="Ostéopathe DO"/>
+                        </VBox>
+                        <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <Label text="N° RPPS"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                            <TextField fx:id="inputRPPSNumber" promptText="example@ex.com"/>
+                        </VBox>
+                    </children>
+                </GridPane>
+
+
+                <Region VBox.vgrow="ALWAYS"/>
+                <Label fx:id="lblMessagePracticienInfos" style="-fx-text-fill: red;" visible="false"/>
+
+                <Region VBox.vgrow="ALWAYS"/>
+                <HBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Enregistrer" styleClass="blue-button" onAction="#handleUpdatePracticienInfos"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+
+        <!--        CABINET INFOS-->
+        <VBox fx:id="paneCabinetInfos" VBox.vgrow="ALWAYS" visible="false">
+            <VBox spacing="14.0" VBox.vgrow="ALWAYS">
+
+                <Label text="Modifier les informations du cabinet (apparait sur les factures)"
+                       style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1d1d1f;"/>
+
+                <GridPane fx:id="gridPaneCabinetInfos" hgap="20" vgap="25">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50.0"/>
+                        <ColumnConstraints percentWidth="50.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="20.0" vgrow="ALWAYS"/>
+                        <RowConstraints minHeight="20.0" vgrow="ALWAYS"/>
+                        <RowConstraints minHeight="20.0" vgrow="ALWAYS"/>
+                        <RowConstraints minHeight="20.0" vgrow="ALWAYS"/>
+                    </rowConstraints>
+                    <children>
+
+                        <!-- Ligne 1: cabinet name, invoice consult label -->
+                        <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <Label text="Nom du cabinet"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                            <TextField fx:id="inputCabinetName" promptText="Cabinet d'ostéopathie"/>
+                        </VBox>
+                        <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <Label text="Libellé de la consultation sur la facture"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                            <TextField fx:id="inputInvoiceConsultLabel" promptText="Consultation d'ostéopathie"/>
+                        </VBox>
+
+                        <!-- Ligne 2: cabinet address, city -->
+                        <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                            <Label text="Adresse du cabinet"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                            <TextField fx:id="inputAddressCabinet" promptText="1 place de l'Eglise"/>
+                        </VBox>
+                        <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <Label text="Ville du cabinet"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                            <TextField fx:id="inputCityCabinet" promptText="Prayssac"/>
+                        </VBox>
+
+                        <!-- Ligne 3 : Cabinet postal code and country -->
+                        <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                            <Label text="Code postal du cabinet"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                            <TextField fx:id="inputPostalCodeCabinet" promptText="46140"/>
+                        </VBox>
+                        <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <Label text="Pays du cabinet"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                            <TextField fx:id="inputCountryCabinet" promptText="FRANCE"/>
+                        </VBox>
+
+                        <!-- Ligne 4 : Invoice end text -->
+                        <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                            <Label text="Texte en bas de la facture"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                            <TextField fx:id="inputInvoiceEndText" promptText="Merci de votre visite"/>
+                        </VBox>
+                    </children>
+                </GridPane>
+
+                <Region VBox.vgrow="ALWAYS"/>
+                <Label fx:id="lblMessageCabinetInfos" style="-fx-text-fill: red;" visible="false"/>
+
+                <Region VBox.vgrow="ALWAYS"/>
+                <HBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Enregistrer" styleClass="blue-button" onAction="#handleUpdateCabinetInfos"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <!-- PAYMENT TYPES -->
+        <VBox fx:id="panePaymentTypes" VBox.vgrow="ALWAYS" visible="false">
+            <VBox spacing="14.0" VBox.vgrow="ALWAYS">
+
+                <Label text="Modifier les types de paiements"
+                       style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1d1d1f;"/>
+                <Label text="L'archivage d'un type de paiement le rendra invisible dans la liste des types de paiements disponibles pour les factures,
+mais il ne changera pas les factures déjà créées avec ce type de paiement." wrapText="true" VBox.vgrow="ALWAYS" minHeight="60"
+                       styleClass="label-of-value" style="-fx-font-style: italic;"/>
+
+                <ScrollPane fitToWidth="true" vbarPolicy="ALWAYS" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                    <HBox>
+                        <VBox fx:id="conteneurPaymentTypes" spacing="4" VBox.vgrow="ALWAYS"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                </ScrollPane>
+
+                <Button fx:id="btnAddPayment" text="Ajouter un type de paiement" styleClass="green-button" onAction="#handleAddPaymentType"/>
+            </VBox>
+        </VBox>
+    </VBox>
+</HBox>

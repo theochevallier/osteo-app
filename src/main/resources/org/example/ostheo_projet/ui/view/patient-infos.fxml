@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import org.example.ostheo_projet.ui.component.AutoCompleteTextField?>
+<?import javafx.scene.image.ImageView?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.ostheo_projet.ui.controller.PatientInfosController"
+>
+
+    <!-- Conteneur principal avec scroll pane -->
+    <ScrollPane fx:id="scrollPane" fitToWidth="true" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER" style="-fx-padding: 0;"
+                VBox.vgrow="ALWAYS">
+
+        <!-- CARD: Informations Patient -->
+        <VBox fx:id="cardPatientInfos" spacing="16" style="-fx-padding: 20;">
+            <HBox alignment="TOP_CENTER" spacing="4">
+                <Button text="Modifier" visible="false"/>
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Label fx:id="lblTitlePage" text="Nouvelle fiche patient" styleClass="label-title"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Button fx:id="btnModifyPatient" styleClass="yellow-button" text="Modifier"
+                        onAction="#handleUpdatePatient"/>
+            </HBox>
+
+            <VBox fx:id="editPane" visible="false" spacing="16">
+                <VBox fx:id="cardEditPane" styleClass="card" spacing="10">
+                    <HBox spacing="10" alignment="CENTER">
+                        <Label text="Informations Patient"
+                               style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1d1d1f;"/>
+                        <ImageView fx:id="imgFlagEdit" visible="false" managed="false" preserveRatio="true"
+                                   fitWidth="40"/>
+
+                        <!-- Image if patient was late/canceled appointment -->
+                        <ImageView fx:id="imgCanceledApptmtEdit" visible="false" managed="false" preserveRatio="true"
+                                   fitWidth="30"/>
+                        <Button fx:id="btnIsEnglish" styleClass="english-button" prefWidth="50"
+                                prefHeight="35"
+                                onAction="#handleClickEnglishBtn"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                    <GridPane fx:id="gridPaneEditForm" hgap="20" vgap="25">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="25.0"/>
+                            <ColumnConstraints percentWidth="25.0"/>
+                            <ColumnConstraints percentWidth="25.0"/>
+                            <ColumnConstraints percentWidth="25.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="20.0" vgrow="ALWAYS"/>
+                            <RowConstraints minHeight="20.0" vgrow="ALWAYS"/>
+                            <RowConstraints minHeight="20.0" vgrow="ALWAYS"/>
+                        </rowConstraints>
+                        <children>
+
+                            <!-- Ligne 1: Firstname Lastname genre Birthday -->
+                            <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label text="Prénom"
+                                       style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                                <TextField fx:id="inputFirstnamePatient" promptText="Prénom du patient"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label text="Nom"
+                                       style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                                <TextField fx:id="inputLastnamePatient" promptText="Nom du patient"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                <Label text="Date de naissance"
+                                       style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                                <TextField fx:id="inputBirthdayPatient" promptText="jj/mm/aaaa"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                                <Label text="Genre"
+                                       style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                                <ComboBox fx:id="comboGenrePatient" promptText="Sélectionner"
+                                          GridPane.hgrow="ALWAYS"/>
+                            </VBox>
+
+
+                            <!-- Ligne 2: Address City Postal code job -->
+                            <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <Label text="Adresse"
+                                       style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                                <TextField fx:id="inputAddressPatient" promptText="Rue, lieu dit"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label text="Ville"
+                                       style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                                <AutoCompleteTextField fx:id="autoCompleteCityPatient" promptText="Ville"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                <Label text="Code Postal"
+                                       style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                                <TextField fx:id="inputPostalCodePatient" promptText="Code postal"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                <Label text="Profession"
+                                       style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                                <AutoCompleteTextField fx:id="autoCompleteJobPatient" promptText="Profession"/>
+                            </VBox>
+
+                            <!-- Ligne 3: tutor relative, email mobile phone fix phone -->
+                            <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                <Label text="Tuteur / Personne responsable"
+                                       style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                                <TextField fx:id="inputRelativePatient" promptText="Ou lien de parenté"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                <Label text="Email"
+                                       style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                                <TextField fx:id="inputEmailPatient" promptText="example@ex.com"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                <Label text="N° portable"
+                                       style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                                <TextField fx:id="inputMobilePhonePatient" promptText="N° portable"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                <Label text="N° fixe"
+                                       style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                                <TextField fx:id="inputFixPhonePatient" promptText="N° téléphone fixe"/>
+                            </VBox>
+                        </children>
+                    </GridPane>
+                </VBox>
+
+                <!-- Ligne 5: bruxisme, osteoporose, oil allergy, medical history, contraindication -->
+                <VBox fx:id="cardEditHealthPane" styleClass="card" spacing="10">
+                    <Label text="Données de santé"
+                           style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 16;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+
+                    <GridPane fx:id="gridPaneEditHealthForm" hgap="20" vgap="25">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="50.0"/>
+                            <ColumnConstraints percentWidth="50.0"/>
+                            <!--                            <ColumnConstraints percentWidth="33.0"/>-->
+                        </columnConstraints>
+                        <rowConstraints>
+                        </rowConstraints>
+                        <children>
+
+                            <VBox spacing="6" GridPane.hgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label text="Antécédents médicaux" styleClass="label" style="-fx-padding: 4 6;"/>
+                                <TextArea fx:id="inputMedicalHistoryPatient" wrapText="true"/>
+                            </VBox>
+
+                            <VBox spacing="6" GridPane.hgrow="ALWAYS" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label text="Contre-indications" styleClass="label-red"/>
+                                <TextArea fx:id="inputContraindicationPatient" wrapText="true"/>
+                            </VBox>
+
+                            <VBox spacing="6" GridPane.hgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <Label text="Traitements" styleClass="label" style="-fx-padding: 4 6;"/>
+                                <TextArea fx:id="inputTreatmentPatient" wrapText="true"/>
+                            </VBox>
+
+                            <VBox spacing="6" GridPane.hgrow="ALWAYS" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label text="Autres" styleClass="label" style="-fx-padding: 4 6;"/>
+                                <VBox spacing="10">
+                                    <CheckBox fx:id="checkOilAllergyPatient" style="-fx-background-color: #ff0000; -fx-background-radius: 8; -fx-text-fill: white;
+                                    -fx-padding: 4 6; -fx-font-weight: bold;" text="Interdit Huiles essentielles"/>
+                                    <CheckBox fx:id="checkBruxismePatient" style="-fx-padding: 4 6;" text="Bruxisme"/>
+                                    <VBox fx:id="osteoporoseConteneurEdit"/>
+                                </VBox>
+                            </VBox>
+                        </children>
+                    </GridPane>
+                </VBox>
+
+                <!-- Ligne 6: canceled appointment-->
+                <HBox spacing="20" alignment="TOP_LEFT" styleClass="card">
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="Annulation non excusée/Dernière minute"
+                               style="-fx-font-weight: bold; -fx-text-fill: #1d1d1f; -fx-font-size: 13;"/>
+                        <TextArea fx:id="inputCanceledAptmtPatient" wrapText="true"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <VBox fx:id="showPane" visible="false" spacing="16">
+                <VBox fx:id="cardShowPane" styleClass="card" spacing="10">
+                    <HBox spacing="10" alignment="CENTER">
+                        <Label text="Informations Patient" styleClass="label-of-value"
+                               style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                        <ImageView fx:id="imgFlagShow" visible="false" managed="false" preserveRatio="true"
+                                   fitWidth="40"/>
+                        <!-- Image if patient was late/canceled appointment -->
+                        <ImageView fx:id="imgCanceledApptmtShow" visible="false" managed="false" preserveRatio="true"
+                                   fitWidth="30"/>
+
+                        <Button fx:id="lblIsEnglish" styleClass="english-button" prefWidth="50"
+                                prefHeight="35"
+                                style="-fx-cursor: default" visible="false" managed="false"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                    <GridPane fx:id="gridPaneShowForm" hgap="20" vgap="25">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="25.0"/>
+                            <ColumnConstraints percentWidth="25.0"/>
+                            <ColumnConstraints percentWidth="25.0"/>
+                            <ColumnConstraints percentWidth="25.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="20.0" vgrow="ALWAYS"/>
+                            <RowConstraints minHeight="20.0" vgrow="ALWAYS"/>
+                            <RowConstraints minHeight="20.0" vgrow="ALWAYS"/>
+                        </rowConstraints>
+                        <children>
+
+                            <!-- Ligne 1: Firstname Lastname genre Birthday -->
+                            <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label styleClass="label-of-value" text="Prénom"/>
+                                <Label fx:id="lblFirstnamePatient" styleClass="label-value"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label styleClass="label-of-value" text="Nom"/>
+                                <Label fx:id="lblLastnamePatient" styleClass="label-value"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                <Label styleClass="label-of-value" text="Date de naissance"/>
+                                <Label fx:id="lblBirthdayPatient" styleClass="label-value"/>
+                            </VBox>
+
+                            <VBox spacing="6" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                                <Label styleClass="label-of-value" text="Genre"/>
+                                <Label fx:id="lblGenrePatient" styleClass="label-value"/>
+                            </VBox>
+
+                            <!-- Ligne 2: Address City Postal code job -->
+                            <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <Label styleClass="label-of-value" text="Adresse"/>
+                                <Label fx:id="lblAddressPatient" styleClass="label-value"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label styleClass="label-of-value" text="Ville"/>
+                                <Label fx:id="lblCityPatient" styleClass="label-value"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                <Label styleClass="label-of-value" text="Code Postal"/>
+                                <Label fx:id="lblPostalCodePatient" styleClass="label-value"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                <Label styleClass="label-of-value" text="Profession"/>
+                                <Label fx:id="lblJobPatient" styleClass="label-value"/>
+                            </VBox>
+
+                            <!-- Ligne 3: tutor relative, email mobile phone fix phone -->
+                            <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                <Label styleClass="label-of-value" text="Tuteur / Personne responsable"/>
+                                <Label fx:id="lblTutorPatient" styleClass="label-value"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                <Label styleClass="label-of-value" text="Email"/>
+                                <Label fx:id="lblEmailPatient" styleClass="label-value"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                <Label styleClass="label-of-value" text="N° portable"/>
+                                <Label fx:id="lblMobilePatient" styleClass="label-value"/>
+                            </VBox>
+                            <VBox spacing="6" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                <Label styleClass="label-of-value" text="N° fixe"/>
+                                <Label fx:id="lblFixPatient" styleClass="label-value"/>
+                            </VBox>
+                        </children>
+                    </GridPane>
+                </VBox>
+
+                <!-- Ligne 5: bruxisme, osteoporose, oil allergy, medical history, contraindication -->
+                <VBox fx:id="cardShowHealthPane" styleClass="card" spacing="10">
+                    <Label text="Données de santé" styleClass="label-of-value"
+                           style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+
+                    <GridPane fx:id="gridPaneShowHealthForm" hgap="20" vgap="25">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="50.0"/>
+                            <ColumnConstraints percentWidth="50.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                        </rowConstraints>
+                        <children>
+                            <VBox spacing="6" HBox.hgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label text="Antécédents médicaux" styleClass="label-of-value"
+                                       style="-fx-padding: 4 0;"/>
+                                <Label fx:id="lblMedHistoryPatient" styleClass="label-value" wrapText="true"
+                                       maxWidth="450"/>
+                            </VBox>
+                            <VBox spacing="6" HBox.hgrow="ALWAYS" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label fx:id="lblTitleContraindicationPatient" text="Contre-indications"
+                                       styleClass="label-of-value"/>
+                                <Label fx:id="lblContraindicationPatient" styleClass="label-value" wrapText="true"
+                                       maxWidth="450"/>
+                            </VBox>
+                            <VBox spacing="6" HBox.hgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <Label text="Traitements" styleClass="label-of-value" style="-fx-padding: 4 0;"/>
+                                <Label fx:id="lblTreatmentPatient" styleClass="label-value" wrapText="true"
+                                       maxWidth="450"/>
+                            </VBox>
+
+                            <VBox spacing="6" HBox.hgrow="ALWAYS" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label text="Autres" styleClass="label-of-value" style="-fx-padding: 4 0;"/>
+                                <VBox spacing="10">
+                                    <CheckBox fx:id="checkOilAllergyPatientLbl" style="-fx-padding: 8;"
+                                              styleClass="check-red" text="Interdit Huiles essentielles"
+                                              mouseTransparent="true" focusTraversable="false"/>
+                                    <CheckBox fx:id="checkBruxismePatientLbl" style="-fx-padding: 8;" text="Bruxisme"
+                                              mouseTransparent="true" focusTraversable="false"/>
+                                    <VBox fx:id="osteoporoseConteneurShow"/>
+                                </VBox>
+                            </VBox>
+                        </children>
+                    </GridPane>
+                </VBox>
+
+                <!-- Ligne 6: medical imported history -->
+                <VBox styleClass="card" spacing="10">
+                    <Label text="Historique de santé (importé)" styleClass="label-of-value"
+                           style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="lblImportedMedicalHistoryPatient" styleClass="label-value" wrapText="true"/>
+                </VBox>
+
+                <!-- Ligne 7: canceled appointment-->
+                <HBox spacing="20" alignment="TOP_LEFT" styleClass="card">
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label styleClass="label-of-value" text="Annulation non excusée/Dernière minute"/>
+                        <Label fx:id="lblCanceledApmtPatient" styleClass="label-value" wrapText="true"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+    <!-- Boutons d'action -->
+    <!-- Label d'info -->
+    <Label fx:id="infoLabel" text="Patient sauvegardé avec succès." visible="false"
+           style="-fx-text-fill: #34C759;"/>
+    <HBox fx:id="paneActionButtons" alignment="BOTTOM_RIGHT" spacing="10" visible="false">
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Annuler" styleClass="cancel-button" onAction="#handleCancelModifyPatient"/>
+        <Button text="Enregistrer" styleClass="blue-button" onAction="#handleSavePatient"/>
+    </HBox>
+</VBox>
